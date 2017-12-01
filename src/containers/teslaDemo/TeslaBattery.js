@@ -1,12 +1,12 @@
 import React from 'react';
 import './TeslaBattery.css';
-import TeslaNotice from '../components/teslaNotice/TeslaNotice';
-import TeslaCar from '../components/teslaCar/TeslaCar';
-import TeslaStats from '../components/teslaStats/TeslaStats';
-import TeslaCounter from '../components/teslaCounter/TeslaCounter';
-import TeslaClimate from '../components/teslaClimate/TeslaClimate';
-import TeslaWheels from '../components/teslaWheels/TeslaWheels';
-import { getModelData } from '../services/BatteryService';
+import TeslaNotice from '../../components/teslaNotice/TeslaNotice';
+import TeslaCar from '../../components/teslaCar/TeslaCar';
+import TeslaStats from '../../components/teslaStats/TeslaStats';
+import TeslaCounter from '../../components/teslaCounter/TeslaCounter';
+import TeslaClimate from '../../components/teslaClimate/TeslaClimate';
+import TeslaWheels from '../../components/teslaWheels/TeslaWheels';
+import { getModelData } from '../../services/BatteryService';
 
 class TeslaBattery extends React.Component {
     constructor(props) {
