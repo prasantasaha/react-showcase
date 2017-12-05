@@ -1,0 +1,243 @@
+body fieldset {
+    border-color: #fff;
+    padding: 0px 20px;
+}
+
+body legend {
+    color: #fff;
+    text-align: left;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+body form {
+    padding: 0 20px;
+    margin: 0;
+}
+
+body .form-input {
+    background: transparent;
+    box-shadow: 0 none;
+    border: 0 none;
+    border-bottom: 2px solid transparent;
+    color: #fff;
+    border-radius: 0;
+    font-size: 42px;
+}
+
+body .form-input:focus,
+body .form-input:active {
+    box-shadow: none;
+    border: 0 none;
+    border-bottom: 2px solid #fff;
+}
+
+.weather-container {
+    transition: background 0.4s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.weather-container .blockquote {
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    margin: 0;
+}
+
+.weather-item {
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+.weather-item .location {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1em;
+    margin: 32px 0 0.5em 0;
+}
+
+.weather-item .timestamp {
+    font-weight: 100;
+    font-size: 32px;
+    margin-bottom: 2em;
+    line-height: 1em;
+}
+
+.weather-item:not(.small) canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.2;
+    width: 500px;
+}
+
+.weather-item .temperature {
+    font-weight: 100;
+    font-size: 132px;
+    line-height: 1em;
+    margin: 0;
+}
+
+.weather-item:not(.small) .temperature-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.weather-item .info {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.weather-item.small {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    flex-wrap: wrap;
+    aling-items: flex-start;
+    justify-content: flex-start;
+}
+
+.weather-item.small .info,
+.weather-item.small .location {
+    display: none;
+}
+
+.weather-item.small .timestamp {
+    order: 1;
+    display: flex;
+    flex: 1;
+    align-self: center;
+    margin-top: 32px;
+    font-size: 32px;
+}
+
+.weather-item.small .temperature-info {
+    display: flex;
+    flex: 2;
+    align-self: center;
+    order: 3;
+}
+
+.weather-item.small .temperature {
+    font-size: 32px;
+}
+
+.weather-item.small canvas {
+    width: 100%;
+    margin-bottom: 10px;
+    order: 2;
+    align-self: center;
+}
+
+.week-container {
+    height: 75vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.week-container .week-current-day {
+    height: 100%;
+    float: left;
+    width: 30%;
+    overflow: hidden;
+}
+
+.week-container .week-all-days {
+    overflow: hidden;
+    width: 70%;
+    float: left;
+    height: 100%;
+}
+
+.week-container .week-all-days .week-one-day {
+    transition: background 0.4s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    float: left;
+    width: calc(100% / 7);
+    height: 100%;
+}
+
+.week-one-day:nth-child(1) {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.week-one-day:nth-child(2) {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.week-one-day:nth-child(3) {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.week-one-day:nth-child(4) {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.week-one-day:nth-child(5) {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.week-one-day:nth-child(6) {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.week-one-day:nth-child(7) {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+@media screen and (max-width: 1000px) {
+    .week-container .week-current-day {
+        height: 60%;
+        float: none;
+        width: 100%;
+    }
+    .week-container .week-current-day .weather-item .location {
+        margin-top: 20px;
+    }
+    .week-container .week-current-day .weather-item .temperature-info {
+        top: auto;
+        bottom: 0;
+        transform: translate(-50%, -10%);
+    }
+    .week-container .week-current-day .weather-item:not(.small) canvas {
+        top: auto;
+        bottom: 0;
+        transform: translate(-50%, -10%);
+    }
+    .week-container .week-all-days {
+        width: 100%;
+        float: none;
+        height: 40%;
+    }
+    .week-container .week-all-days .weather-item.small .timestamp {
+        font-size: 24px;
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+    }
+    .week-container .week-all-days .weather-item.small .temperature {
+        font-weight: 300;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .week-container .week-all-days .weather-item.small .temperature {
+        font-size: 22px;
+        font-weight: 300;
+    }
+}

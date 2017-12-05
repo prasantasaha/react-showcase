@@ -5,12 +5,17 @@
   "homepage": "https://prasantasaha.github.io/react-showcase",
   "dependencies": {
     "gh-pages": "^1.1.0",
+    "lodash": "^4.17.4",
     "material-ui": "next",
+    "moment": "^2.19.3",
+    "randomcolor": "^0.5.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-geolocated": "^2.2.1",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "react-skycons": "^0.7.0"
   },
   "scripts": {
     "predeploy": "npm run build",

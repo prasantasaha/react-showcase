@@ -6,6 +6,7 @@ import AppliedRoute from "./components/AppliedRoute";
 const AsyncHome = asyncComponent(() => import("./containers/Home"));
 const AsyncNotFound = asyncComponent(() => import("./containers/NotFound"));
 const AsyncTeslaDemo = asyncComponent(() => import("./containers/teslaDemo/TeslaDemo"));
+const AsyncWeatherDemo = asyncComponent(() => import("./containers/weatherDemo/WeatherDemo"));
 
 export default ({ childProps }) =>
     <Switch>
@@ -19,6 +20,12 @@ export default ({ childProps }) =>
             path="/tesla-demo"
             exact
             component={AsyncTeslaDemo}
+            props={childProps}
+        />
+        <AppliedRoute
+            path="/weather-demo"
+            exact
+            component={AsyncWeatherDemo}
             props={childProps}
         />
         {/* <UnauthenticatedRoute
