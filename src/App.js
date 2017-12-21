@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-// import { Nav, NavItem, Navbar } from "react-bootstrap";
 import Routes from "./Routes";
-// import RouteNavItem from "./components/RouteNavItem";
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/Menu';
-import RaisedButton from 'material-ui/Button';
+import AppShell from './components/core/AppShell'
 import "./App.css";
 
 class App extends Component {
@@ -53,39 +49,10 @@ class App extends Component {
     return (
       // !this.state.isAuthenticating &&
       <div className="App container">
-        {/* <Navbar fluid collapseOnSelect>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <Link to="/">Scratch</Link>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
-          <Navbar.Collapse>
-            <Nav pullRight>
-              {this.state.isAuthenticated
-                ? <NavItem onClick={this.handleLogout}>Logout</NavItem>
-                : [
-                    <RouteNavItem key={1} href="/signup">
-                      Signup
-                    </RouteNavItem>,
-                    <RouteNavItem key={2} href="/login">
-                      Login
-                    </RouteNavItem>
-                  ]}
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar> */}
-        <div>
-          <RaisedButton
-            label="Toggle Drawer"
-            onClick={this.handleToggle}
-          />
-          <Drawer open={this.state.open}>
-            <MenuItem>Menu Item</MenuItem>
-            <MenuItem>Menu Item 2</MenuItem>
-          </Drawer>
-        </div>
-        <Routes childProps={childProps} />
+        <AppShell>
+          <Routes childProps={childProps} />
+        </AppShell>
+
       </div >
     );
   }

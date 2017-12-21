@@ -2,9 +2,16 @@ let API_KEY = "f5aeb1bc16eb7584b3c6e0ce52794a2c"
 let apiUrl = "http://api.openweathermap.org/data/2.5/"
 
 
-export function fetchWeather(city, coord) {
+export function fetchWeatherByCoords(coords) {
     let weeklyWeatherUrl =
-        `${apiUrl}/forecast?lat=${coord.lat}&lon=${coord.lon}&q=${city}&units=metric&cnt=7&appid=${API_KEY}`
+        `${apiUrl}/forecast?lat=${coords.latitude}&lon=${coords.longitude}&units=metric&cnt=7&appid=${API_KEY}`
+
+    return fetch(weeklyWeatherUrl).then((response) => response.json());
+}
+
+export function fetchWeatherByCity(city) {
+    let weeklyWeatherUrl =
+        `${apiUrl}/forecast?q=${city}&units=metric&cnt=7&appid=${API_KEY}`
 
     return fetch(weeklyWeatherUrl).then((response) => response.json());
 }

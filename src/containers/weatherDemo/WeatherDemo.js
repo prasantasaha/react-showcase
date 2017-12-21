@@ -1,6 +1,5 @@
 import React from "react"
-import { fetchWeather } from "./../../services/WeatherService"
-import _ from "lodash"
+import { fetchWeatherByCity, fetchWeatherByCoords } from "./../../services/WeatherService"
 import { geolocated, geoPropTypes } from 'react-geolocated';
 import randomColor from "randomcolor";
 import WeekWeather from "./../../components/weekWeather/WeekWeather"
@@ -11,57 +10,54 @@ import "./WeatherDemo.css";
 class WeatherDemo extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            city: "Fremont",
+            fetchingCoordinates: true,
+            city: "",
             searchedCity: null,
-            coord: {
-                lon: 0,
-                lat: 0
-            },
             weekWeather: []
         };
     }
 
-    getWeather(searchedCity = this.state.city, coord = this.state.coord) {
-        fetchWeather(searchedCity, coord)
-            .then((response) => {
-                var weather = _.map(response.list, (dayWeather) => {
-                    return {
-                        dayWeather,
-                        country: response.city.country,
-                        city: response.city.name
-                    }
-                });
 
-                this.setState({
-                    weekWeather: weather,
-                    city: this.state.searchedCity,
-                    color: randomColor({ luminosity: "dark", format: "hex" })
-                });
-            })
+
+    updateWeatherData(weatherData) {
+        var weather = weatherData.list.map(dayWeather => {
+            return {
+                dayWeather,
+                country: weatherData.city.country,
+                city: weatherData.city.name
+            }
+        });
+
+        this.setState({
+            weekWeather: weather,
+            city: this.state.searchedCity,
+            color: randomColor({ luminosity: "dark", format: "hex" })
+        });
     }
 
-    componentWillUpdate() {
-        console.log(this.props);
-        this.getWeather();
+
+    componentDidUpdate() {
+        if (this.state.fetchingCoordinates && this.props.coords) {
+           
+            fetchWeatherByCoords(this.props.coords)
+                .then((response) => {
+                    this.updateWeatherData(response);
+                    this.setState({
+                        fetchingCoordinates: false
+                    });
+                })
+        }
     }
 
     render() {
-        if (this.props.coords && (!this.state.coord.lon || !this.state.coord.lat)) {
-            this.setState({
-                coord: {
-                    "lon": this.props.coords ? this.props.coords.longitude : 0,
-                    "lat": this.props.coords ? this.props.coords.latitude : 0
-                }
-            });
-        }
-        console.log(this.props);
         return <div className="weather-container"
             style={{ backgroundColor: this.state.color }}>
-            {_.isEmpty(this.state.weekWeather) ? "no data" :
+            {!this.state.weekWeather || !this.state.weekWeather.length ? "no data" :
                 <WeekWeather color={this.state.color}
                     weekWeather={this.state.weekWeather} />}
-            {this._renderForm()}
+            {/* {this._renderForm()} */}
         </div>;
     }
 
@@ -88,7 +84,10 @@ class WeatherDemo extends React.Component {
             return;
         }
 
-        this.getWeather(searchedCity);
+        fetchWeatherByCity(searchedCity, this.props.coords)
+            .then((response) => {
+                this.updateWeatherData(response);
+            })
     }
 };
 // WeatherDemo.prototype = { ...WeatherDemo.prototypes, ...geoPropTypes }
