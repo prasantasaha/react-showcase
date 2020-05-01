@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.5
+version: v1.14.1
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -94,3 +94,6 @@ patch:
         patched: '2019-11-20T15:34:47.957Z'
     - react-scripts > jest > jest-cli > jest-runtime > jest-config > jest-environment-jsdom > jsdom > request > stringstream:
         patched: '2019-11-20T15:34:47.957Z'
+  SNYK-JS-LODASH-567746:
+    - material-ui > lodash:
+        patched: '2020-05-01T03:27:52.765Z'
